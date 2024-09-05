@@ -9,7 +9,7 @@ var year = now.getFullYear();
 
 
 initCalender();
-console.log(startDay());
+
 
 function initCalender(){
     $("#text_day").text(day);
@@ -20,10 +20,12 @@ function initCalender(){
 
     $(".item_day").remove();
 
-    for(let i = startDay(); i>0; i--){
+    for(let i = startDay(); i > 0; i--){
+        console.log(getTotalDays(month-1) + " - " + i + " + 1 ");
         $(".container_days").append
         (`<span class="week_days_item item_day prev_days">${getTotalDays(month-1)-(i-1)}</span>`);
     }
+
 
     for(let i=1; i<=getTotalDays(month); i++){
         if(i==day && month==currentMonth){
@@ -55,14 +57,15 @@ function getPrevMonth(){
 }
 function startDay(){
     var start = new Date(year, month, 1);
-    return((start.getDate()-1)===-1) ? 6 : start.getDay();
+    let day = start.getDay(); // Devuelve 0 para domingo, 1 para lunes, etc.
+    return (day === 0) ? 6 : day - 1; // Ajustar para que 0 sea lunes y 6 sea domingo
 }
 
 function leapMonth(){
     return((year % 400 === 0) || (year % 4 === 0) && (year % 100 !== 0));
 }
 
-function getTotalDays(){
+function getTotalDays(month){
     if(month === -1) month = 11;
 
     var numMonthReal = month +1;
