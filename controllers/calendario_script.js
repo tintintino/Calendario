@@ -67,15 +67,15 @@ function getTotalDays(){
 
     var numMonthReal = month +1;
 
-    if(numMonthReal == 3 || numMonthReal == 5 || numMonthReal == 8 || numMonthReal == 10){
+    if(numMonthReal == 1 || numMonthReal == 3 || numMonthReal == 5 || numMonthReal == 7 || numMonthReal == 8 || numMonthReal == 10 || numMonthReal == 12){
         return 31;
-    }else if(numMonthReal == 0 || numMonthReal == 2 || numMonthReal == 4 || numMonthReal == 6 
-             || numMonthReal == 7 || numMonthReal == 9 || numMonthReal == 10){
+    }else if(numMonthReal == 4 || numMonthReal == 6 || numMonthReal == 9 || numMonthReal == 11 ){
         return 30;
     }else{
         return leapMonth() ? 29:28;
     }
 }
+
 
 $("#next_month").click(function(){
     getNextMonth();
